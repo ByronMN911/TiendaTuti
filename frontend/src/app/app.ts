@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { CommonModule } from '@angular/common'; // Para usar *ngIf
-import { Api } from './api'; // Importamos el servicio de conexión
+import { CommonModule } from '@angular/common'; 
+import { ApiService } from './core/services/api'; // 1. Nueva ruta corregida
 import { NavbarComponent } from './shared/navbar/navbar';
 import { FooterComponent } from './shared/footer/footer';
 
@@ -14,20 +14,21 @@ import { FooterComponent } from './shared/footer/footer';
 })
 export class App implements OnInit {
   respuesta: any;
-
-  // Inyectamos el servicio de conexión
-  constructor(private apiService: Api) {}
+  
+  // 2. Usamos 'inject' que es más moderno o corregimos el constructor
+  private apiService = inject(ApiService);
 
   ngOnInit() {
-    console.log("Intentando llamar al Backend ahora mismo..."); // AÑADE ESTO
-    // Pedimos el saludo al backend de Django
-    this.apiService.obtenerSaludo().subscribe({
-      next: (data) => {
+    console.log("Verificando conexión con el Backend de Byron...");
+    
+    // 3. Tipamos 'data' y 'error' como :any para quitar los errores TS7006
+    this.apiService.getProductos().subscribe({
+      next: (data: any) => {
         this.respuesta = data;
-        console.log('Conectado', data);
+        console.log('✅ Conexión exitosa. Productos cargados:', data.length);
       },
-      error: (error) => {
-        console.error('Error de conexión:', error);
+      error: (error: any) => {
+        console.error('❌ Error de conexión al servidor Django:', error);
       }
     });
   }
