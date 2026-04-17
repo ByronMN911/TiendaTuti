@@ -4,15 +4,15 @@
   "pk": 1,
   "fields": {
     "nombre": "Alacena",
-    "descripcion": "Tabla destinada a almacenar la información de los productos alimenticios disponibles en la despensa."
+    "descripcion": "Tabla destinada a almacenar la informaciï¿½n de los productos alimenticios disponibles en la despensa."
   }
 },
 {
   "model": "api.categoria",
   "pk": 2,
   "fields": {
-    "nombre": "Electrodomésticos",
-    "descripcion": "Tabla que registra los dispositivos eléctricos del hogar o establecimiento."
+    "nombre": "Electrodomï¿½sticos",
+    "descripcion": "Tabla que registra los dispositivos elï¿½ctricos del hogar o establecimiento."
   }
 },
 {
@@ -35,7 +35,7 @@
   "fields": {
     "categoria": 1,
     "nombre": "Desinfectante Antibacterial",
-    "descripcion": "Desinfectante Antibacterial Fragancia Naranja Limón Con Bicarbonato 900 Ml",
+    "descripcion": "Desinfectante Antibacterial Fragancia Naranja Limï¿½n Con Bicarbonato 900 Ml",
     "precio": "1.77",
     "stock": 325,
     "imagen": "https://supermaxi-225de.kxcdn.com/wp-content/uploads/2026/03/7861223825770-1-1.png",
@@ -62,8 +62,8 @@
   "pk": 4,
   "fields": {
     "categoria": 2,
-    "nombre": "Sartén Eléctrico",
-    "descripcion": "Sartén Eléctrico Modelo DEP3650 DAEWOO 120V",
+    "nombre": "Sartï¿½n Elï¿½ctrico",
+    "descripcion": "Sartï¿½n Elï¿½ctrico Modelo DEP3650 DAEWOO 120V",
     "precio": "34.50",
     "stock": 96,
     "imagen": "https://supermaxi-225de.kxcdn.com/wp-content/uploads/2024/08/4895155632932-1-9.jpg",

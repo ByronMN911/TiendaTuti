@@ -1,16 +1,12 @@
-<div style="text-align: center; margin-top: 50px; font-family: Arial, sans-serif;">
-  <h1>Proyecto Calidad de Software</h1>
-  <p>Estudiante: Byron</p>
-  <hr>
+<app-navbar></app-navbar>
 
-  <div *ngIf="respuesta; else cargando">
-    <div style="background-color: #d4edda; padding: 20px; border-radius: 10px; display: inline-block;">
-      <h3>Mensaje desde Django:</h3>
-      <p style="font-size: 1.5rem; color: #155724;">{{ respuesta.mensaje }}</p>
-    </div>
+<main style="padding-top: 72px; min-height: 100vh; background-color: var(--light-bg, #f4f6f8);">
+  
+  <div *ngIf="respuesta" style="background: #e6ffe6; padding: 10px; text-align: center; border-bottom: 1px solid green;">
+    🟢 Conexión al Backend exitosa: {{ respuesta | json }}
   </div>
 
-  <ng-template #cargando>
-    <p>Intentando conectar con el Backend en el puerto 8000...</p>
-  </ng-template>
-</div>
+  <router-outlet></router-outlet>
+</main>
+
+<app-footer></app-footer>
