@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import User
 
 class Categoria(models.Model):
     nombre = models.CharField(max_length=100, unique=True, verbose_name='Nombre de la Categoría')
@@ -31,17 +30,43 @@ class Producto(models.Model):
         verbose_name_plural = 'Productos'
         ordering = ['-fecha_creacion']
 
-class Carrito(models.Model):
-    usuario = models.OneToOneField(User, on_delete=models.CASCADE, related_name='carrito')
-    fecha_creacion = models.DateTimeField(auto_now_add=True)
+# --- NUEVO MODELO GUEST CHECKOUT ---
+
+class Pedido(models.Model):
+    # Datos del cliente invitado
+    email = models.EmailField(verbose_name='Correo Electrónico')
+    nombre = models.CharField(max_length=100, verbose_name='Nombres')
+    apellidos = models.CharField(max_length=100, verbose_name='Apellidos')
+    cedula = models.CharField(max_length=15, verbose_name='Cédula / RUC')
+    telefono = models.CharField(max_length=20, verbose_name='Teléfono')
+
+    # Datos de entrega
+    METODOS_ENVIO = [
+        ('TIENDA', 'Retiro en tienda'),
+        ('DOMICILIO', 'Envío a domicilio'),
+    ]
+    metodo_envio = models.CharField(max_length=20, choices=METODOS_ENVIO, default='TIENDA')
+    direccion_envio = models.TextField(blank=True, null=True, verbose_name='Dirección de Envío')
+    
+    # Metadatos del pedido
+    total = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Total a Pagar ($)')
+    fecha_pedido = models.DateTimeField(auto_now_add=True)
+    pagado = models.BooleanField(default=False, verbose_name='¿Pago confirmado?')
 
     def __str__(self):
-        return f"Carrito de {self.usuario.username}"
+        return f"Pedido #{self.id} - {self.nombre} {self.apellidos}"
 
-class ItemCarrito(models.Model):
-    carrito = models.ForeignKey(Carrito, related_name='items', on_delete=models.CASCADE)
-    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    class Meta:
+        verbose_name = 'Pedido'
+        verbose_name_plural = 'Pedidos'
+        ordering = ['-fecha_pedido']
+
+class DetallePedido(models.Model):
+    pedido = models.ForeignKey(Pedido, related_name='detalles', on_delete=models.CASCADE)
+    producto = models.ForeignKey(Producto, on_delete=models.SET_NULL, null=True) # SET_NULL para no borrar el historial si eliminamos el producto de la tienda
     cantidad = models.PositiveIntegerField(default=1)
+    precio_unitario = models.DecimalField(max_digits=10, decimal_places=2, help_text="Precio al momento de la compra")
 
     def __str__(self):
-        return f"{self.cantidad} x {self.producto.nombre} en el carrito de {self.carrito.usuario.username}"
+        producto_nombre = self.producto.nombre if self.producto else "Producto Eliminado"
+        return f"{self.cantidad}x {producto_nombre} (Pedido #{self.pedido.id})"

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Categoria, Producto, Carrito, ItemCarrito
+from .models import Categoria, Producto, Pedido, DetallePedido
 
 class CategoriaSerializer(serializers.ModelSerializer):
     class Meta:
@@ -7,31 +7,41 @@ class CategoriaSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ProductoSerializer(serializers.ModelSerializer):
-    # Esto es para que en el JSON salga el nombre de la categoría y no solo el número de ID
     categoria_nombre = serializers.CharField(source='categoria.nombre', read_only=True)
 
     class Meta:
         model = Producto
         fields = '__all__'
 
-class ItemCarritoSerializer(serializers.ModelSerializer):
-    producto_nombre = serializers.ReadOnlyField(source='producto.nombre')
-    subtotal = serializers.SerializerMethodField()
+class DetallePedidoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DetallePedido
+        fields = ['producto', 'cantidad', 'precio_unitario']
+
+class PedidoSerializer(serializers.ModelSerializer):
+    detalles = DetallePedidoSerializer(many=True)
 
     class Meta:
-        model = ItemCarrito
-        fields = ['id', 'producto', 'producto_nombre', 'cantidad', 'subtotal']
+        model = Pedido
+        fields = ['id', 'email', 'nombre', 'apellidos', 'cedula', 'telefono', 
+                  'metodo_envio', 'direccion_envio', 'total', 'detalles', 'fecha_pedido', 'pagado']
+        read_only_fields = ['pagado', 'fecha_pedido'] # El frontend no decide si ya se pagó
 
-    def get_subtotal(self, obj):
-        return obj.producto.precio * obj.cantidad
-
-class CarritoSerializer(serializers.ModelSerializer):
-    items = ItemCarritoSerializer(many=True, read_only=True)
-    total = serializers.SerializerMethodField()
-
-    class Meta:
-        model = Carrito
-        fields = ['id', 'usuario', 'items', 'total', 'fecha_creacion']
-
-    def get_total(self, obj):
-        return sum(item.producto.precio * item.cantidad for item in obj.items.all())
+    def create(self, validated_data):
+        # Separamos los detalles del pedido principal
+        detalles_data = validated_data.pop('detalles')
+        
+        # Creamos el registro del pedido principal
+        pedido = Pedido.objects.create(**validated_data)
+        
+        # Creamos los registros de cada producto comprado
+        for detalle_data in detalles_data:
+            DetallePedido.objects.create(pedido=pedido, **detalle_data)
+            
+            # Opcional pero recomendado: Restar el stock del producto
+            producto = detalle_data['producto']
+            if producto.stock >= detalle_data['cantidad']:
+                producto.stock -= detalle_data['cantidad']
+                producto.save()
+                
+        return pedido
