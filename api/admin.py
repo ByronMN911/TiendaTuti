@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Categoria, Producto, Carrito, ItemCarrito
+from .models import Categoria, Producto, Pedido, DetallePedido
 
 @admin.register(Categoria)
 class CategoriaAdmin(admin.ModelAdmin):
@@ -13,11 +13,15 @@ class ProductoAdmin(admin.ModelAdmin):
     search_fields = ('nombre', 'descripcion')
     list_editable = ('precio', 'stock', 'activo')
 
-# NUEVAS TABLAS
-@admin.register(Carrito)
-class CarritoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'usuario', 'fecha_creacion')
+# Hacemos que los detalles se vean dentro del mismo formulario del Pedido
+class DetallePedidoInline(admin.TabularInline):
+    model = DetallePedido
+    extra = 0
+    readonly_fields = ('precio_unitario',)
 
-@admin.register(ItemCarrito)
-class ItemCarritoAdmin(admin.ModelAdmin):
-    list_display = ('carrito', 'producto', 'cantidad')
+@admin.register(Pedido)
+class PedidoAdmin(admin.ModelAdmin):
+    list_display = ('id', 'nombre', 'apellidos', 'email', 'total', 'pagado', 'fecha_pedido')
+    list_filter = ('pagado', 'metodo_envio', 'fecha_pedido')
+    search_fields = ('nombre', 'apellidos', 'cedula', 'email')
+    inlines = [DetallePedidoInline]
