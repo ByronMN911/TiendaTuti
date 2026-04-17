@@ -1,12 +1,12 @@
 // src/app/shared/navbar/navbar.component.ts
 import { Component, inject } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { CartService } from '../../core/services/cart';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink],
   template: `
     <nav class="navbar navbar-expand-lg navbar-tuti fixed-top shadow-sm">
       <div class="container">

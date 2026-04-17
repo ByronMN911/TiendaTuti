@@ -1,12 +1,12 @@
 // src/app/features/checkout/confirmacion/confirmacion.component.ts
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CurrencyPipe, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-confirmacion',
   standalone: true,
-  imports: [RouterLink, CurrencyPipe, DatePipe],
+  imports: [RouterLink,DatePipe],
   template: `
     <div class="container py-5">
       <div class="confirmacion-card mx-auto">
