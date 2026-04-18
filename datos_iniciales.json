@@ -430,5 +430,65 @@
     "cantidad": 4,
     "precio_unitario": "34.50"
   }
+},
+{
+  "model": "api.tienda",
+  "pk": 1,
+  "fields": {
+    "nombre": "Tuti La Floresta",
+    "provincia": "Pichincha",
+    "ciudad": "Quito",
+    "direccion": "Madrid E12-71, 170143 Quito",
+    "latitud": "-0.207470",
+    "longitud": "-78.485580"
+  }
+},
+{
+  "model": "api.tienda",
+  "pk": 2,
+  "fields": {
+    "nombre": "Tuti Quitumbe",
+    "provincia": "Pichincha",
+    "ciudad": "Quito",
+    "direccion": "Av. Llira Ñan y Pachamama &, 170146 Quito",
+    "latitud": "-0.296210",
+    "longitud": "-78.545700"
+  }
+},
+{
+  "model": "api.tienda",
+  "pk": 3,
+  "fields": {
+    "nombre": "TuTi Villaflora",
+    "provincia": "Pichincha",
+    "ciudad": "Quito",
+    "direccion": "QF4J+99P, Av Rodrigo de Chávez, 170111 Quito",
+    "latitud": "-0.243950",
+    "longitud": "-78.518850"
+  }
+},
+{
+  "model": "api.tienda",
+  "pk": 4,
+  "fields": {
+    "nombre": "Tuti Simón Bolivar",
+    "provincia": "Pichincha",
+    "ciudad": "Quito",
+    "direccion": "Av. Simón Bolívar &, 170145 Quito",
+    "latitud": "-0.243120",
+    "longitud": "-78.482460"
+  }
+},
+{
+  "model": "api.tienda",
+  "pk": 5,
+  "fields": {
+    "nombre": "TuTi Loma de Puengasí",
+    "provincia": "Pichincha",
+    "ciudad": "Quito",
+    "direccion": "QG43+HG4, Ricardo Izurieta del Castillo, 170145 Quito",
+    "latitud": "-0.243610",
+    "longitud": "-78.496130"
+  }
 }
 ]
