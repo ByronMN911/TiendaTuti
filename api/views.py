@@ -1,4 +1,4 @@
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets, permissions, filters
 from .models import Categoria, Producto, Pedido
 from .serializers import CategoriaSerializer, ProductoSerializer, PedidoSerializer
 
@@ -11,6 +11,11 @@ class ProductoViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Producto.objects.filter(activo=True)
     serializer_class = ProductoSerializer
     permission_classes = [permissions.AllowAny]
+    
+    # -- Configuración del Buscador ---
+    filter_backends = [filters.SearchFilter]
+    # Le decimos a Django que busque coincidencias tanto en el nombre como en la descripción
+    search_fields = ['nombre', 'descripcion'] 
 
 class PedidoViewSet(viewsets.ModelViewSet):
     queryset = Pedido.objects.all()
