@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Categoria, Producto, Pedido, DetallePedido
+from .models import Categoria, Producto, Pedido, DetallePedido, Tienda
 
 class CategoriaSerializer(serializers.ModelSerializer):
     class Meta:
@@ -7,8 +7,7 @@ class CategoriaSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ProductoSerializer(serializers.ModelSerializer):
-    categoria_nombre = serializers.CharField(source='categoria.nombre', read_only=True)
-
+    categoria = serializers.ReadOnlyField(source='categoria.nombre')
     class Meta:
         model = Producto
         fields = '__all__'
@@ -45,3 +44,9 @@ class PedidoSerializer(serializers.ModelSerializer):
                 producto.save()
                 
         return pedido
+
+# --- Serializador de Tiendas ---
+class TiendaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tienda
+        fields = '__all__'
