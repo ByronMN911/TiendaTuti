@@ -1,0 +1,41 @@
+Expo 2 Ambientes Computacionales
+
+1. Deben traer la presentación donde todo el grupo debe defender el tema
+2. Traer un ejemplo practico del tema asignado
+3. En base a la practica y su exposición generar un tarea autónoma en clase que debe ser calificada y promediada con la tarea
+asignada el día de su exposición.  
+
+
+
+Grupo 1 tema: GitLab vs GitHub que son y como se utilizan lo servidores. (07/04/2026)
+Jesús Viera
+Erick Sanguña
+Ian Morales
+Steven Gaspata
+
+Grupo 2 tema: Instalando y Generando Componentes (Angular 21) subir cambios en GIT  (08/04/2026)
+Jair Patiño
+Genesis Escobar
+Daniela Maldonado
+Cristian Villegas
+Mathew Lara
+Alan Olivo
+Byron Melo
+
+Grupo 3 tema: Enfoque del modelo Saas en empresas (09/04/2026)
+Francisco Escobar
+Ronald Collaguazo
+Alyson Guaman 
+
+Grupo 4  tema: Publicando cambios (Git Push y PULL)  (10/04/2026)
+Kevin Suasnavas
+Kevin Yalama
+Eric Campoverde
+Aaron Lopez
+Cristian Arias
+
+Grupo 5 tema: Git Rebase y Proveedores de servicios en la nube (13/04/2025)
+Alexis Gonzales
+Esteban Mosquera
+Dilan Salazar
+Kenin Cusme
