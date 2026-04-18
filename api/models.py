@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.validators import MinValueValidator
+from django.core.validators import MinValueValidator, RegexValidator
 
 class Categoria(models.Model):
     nombre = models.CharField(max_length=100, unique=True, verbose_name='Nombre de la Categoría')
@@ -35,12 +35,16 @@ class Producto(models.Model):
 # --- NUEVO MODELO GUEST CHECKOUT ---
 
 class Pedido(models.Model):
+    # --- NUEVOS VALIDADORES ---
+    letras_validator = RegexValidator(regex=r'^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$', message='Este campo solo debe contener letras.')
+    telefono_validator = RegexValidator(regex=r'^\d{10}$', message='El teléfono debe tener exactamente 10 dígitos numéricos.')
+
     # Datos del cliente invitado
     email = models.EmailField(verbose_name='Correo Electrónico')
-    nombre = models.CharField(max_length=100, verbose_name='Nombres')
-    apellidos = models.CharField(max_length=100, verbose_name='Apellidos')
+    nombre = models.CharField(max_length=100, validators=[letras_validator], verbose_name='Nombres')
+    apellidos = models.CharField(max_length=100, validators=[letras_validator], verbose_name='Apellidos')
     cedula = models.CharField(max_length=15, verbose_name='Cédula / RUC')
-    telefono = models.CharField(max_length=20, verbose_name='Teléfono')
+    telefono = models.CharField(max_length=20, validators=[telefono_validator], verbose_name='Teléfono')
 
     # Datos de entrega
     METODOS_ENVIO = [

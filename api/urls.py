@@ -4,7 +4,7 @@ from .views import CategoriaViewSet, ProductoViewSet, PedidoViewSet, TiendaViewS
 
 router = DefaultRouter()
 router.register(r'categorias', CategoriaViewSet)
-router.register(r'productos', ProductoViewSet)
+router.register(r'productos', ProductoViewSet, basename='producto')
 router.register(r'pedidos', PedidoViewSet, basename='pedido')
 router.register(r'tiendas', TiendaViewSet) # --- ruta /api/tiendas/ ---
 
