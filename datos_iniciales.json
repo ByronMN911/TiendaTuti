@@ -11,8 +11,8 @@
   "model": "api.categoria",
   "pk": 2,
   "fields": {
-    "nombre": "Electrodom�sticos",
-    "descripcion": "Tabla que registra los dispositivos el�ctricos del hogar o establecimiento."
+    "nombre": "Electrodomésticos",
+    "descripcion": "Tabla que registra los dispositivos eléctricos del hogar o establecimiento."
   }
 },
 {
@@ -61,7 +61,7 @@
   "fields": {
     "categoria": 1,
     "nombre": "Naranjilla",
-    "descripcion": "Naranjilla Fresca Para Jugo",
+    "descripcion": "Naranjilla Fresca Para Jugo.",
     "precio": "3.23",
     "stock": 489,
     "imagen": "https://supermaxi-225de.kxcdn.com/wp-content/uploads/2025/05/7868000969207-1.png",
@@ -75,7 +75,7 @@
   "fields": {
     "categoria": 1,
     "nombre": "Desinfectante Antibacterial",
-    "descripcion": "Desinfectante Antibacterial Fragancia Naranja Lim�n Con Bicarbonato 900 Ml",
+    "descripcion": "Desinfectante Antibacterial Fragancia Naranja Limon Con Bicarbonato 900 Ml",
     "precio": "1.77",
     "stock": 325,
     "imagen": "https://supermaxi-225de.kxcdn.com/wp-content/uploads/2026/03/7861223825770-1-1.png",
@@ -102,8 +102,8 @@
   "pk": 4,
   "fields": {
     "categoria": 2,
-    "nombre": "Sart�n El�ctrico",
-    "descripcion": "Sart�n El�ctrico Modelo DEP3650 DAEWOO 120V",
+    "nombre": "Sartén Eléctrico",
+    "descripcion": "Sartén Eléctrico Modelo DEP3650 DAEWOO 120V",
     "precio": "34.50",
     "stock": 96,
     "imagen": "https://supermaxi-225de.kxcdn.com/wp-content/uploads/2024/08/4895155632932-1-9.jpg",
@@ -120,7 +120,7 @@
     "descripcion": "Galletas dulces, ligeras y esponjosas, reconocidas por su forma alargada y extremos redondeados.",
     "precio": "1.69",
     "stock": 19,
-    "imagen": "https://lh3.googleusercontent.com/proxy/dHn6bE1AAsRan53y1Rqx4s0jIe7b21SJ6wtRNOazaxkI9gFgXUQ5GUpPC8uJExXujtQ8s0lZhbbQYKgNcx1B1sjFUjbQUjGeiSfpbWvxDpIXu-lpkOQSsRLM",
+    "imagen": "https://supermaxi-225de.kxcdn.com/wp-content/uploads/2025/07/7861006722326-1-11.jpg",
     "activo": true,
     "fecha_creacion": "2026-04-17T23:44:04.130Z"
   }
@@ -190,7 +190,7 @@
     "descripcion": "Alimento Húmedo para gatos Whiskas Adult Atún en Salsa , ofrece a tu gato deliciosos trocitos de carne cocidos al vapor que le otorgan fibras naturales y minerales, Vitamina A y Taurina que benefician integralmente su salud",
     "precio": "0.85",
     "stock": 80,
-    "imagen": "https://citypet.ec/wp-content/uploads/2020/06/WHISKAS-ADULT-HUMEDO-ATUN-EN-SALSA-85GR.jpg",
+    "imagen": "https://supermaxi-225de.kxcdn.com/wp-content/uploads/2025/06/7896029046609-1-9.png",
     "activo": true,
     "fecha_creacion": "2026-04-17T23:53:58.876Z"
   }
@@ -228,11 +228,11 @@
   "pk": 13,
   "fields": {
     "categoria": 6,
-    "nombre": "Detergente en polvo con suavizante CICLON",
+    "nombre": "Detergente en polvo Elimina Olores CICLON",
     "descripcion": "Limpia profundamente mientras suaviza y perfuma",
     "precio": "1.94",
     "stock": 50,
-    "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbPOMXeH6Ry3LmMi_LK4PTKgDGSHnhs0_AZg&s",
+    "imagen": "https://supermaxi-225de.kxcdn.com/wp-content/uploads/2026/03/7861048616553-1-10.png",
     "activo": true,
     "fecha_creacion": "2026-04-18T00:04:09.414Z"
   }
@@ -246,7 +246,7 @@
     "descripcion": "Deja te trae la fòrmula màs poderosa de la historia, ahora con tecnologia de Bicarbonato Activo que te da Ultra Rendimiento + Ultra Limpieza",
     "precio": "1.85",
     "stock": 70,
-    "imagen": "https://www.deja.com.ec/images/h0nadbhvm6m4/2ZguFRsDLna50TBSFCFdcr/8f65ef645c516250b9d7295b6dd34ccb/R29hdF9EZWphX0xpbW9uLnBuZw/1200w-1200h/nuevo-deja-ultra-poder-lim%C3%B3n%2C-empaque-principalemente-azul-oscuro-y-en-parte-inferior-color-verde..jpg",
+    "imagen": "https://supermaxi-225de.kxcdn.com/wp-content/uploads/2025/05/7861001300925-1-3.png",
     "activo": true,
     "fecha_creacion": "2026-04-18T00:05:20.985Z"
   }
@@ -260,7 +260,7 @@
     "descripcion": "Es un limpiador, desinfectante y blanqueador multiusos que elimina el 99.99% de hongos y bacterias",
     "precio": "0.78",
     "stock": 20,
-    "imagen": "https://tuti.com.ec/wp-content/uploads/2023/10/CloroGelDiamant-NP-1-450x450.png",
+    "imagen": "https://supermaxi-225de.kxcdn.com/wp-content/uploads/2024/08/7861038059995-1-11.jpg",
     "activo": true,
     "fecha_creacion": "2026-04-18T00:07:16.061Z"
   }
@@ -274,7 +274,7 @@
     "descripcion": "Enciende tus momentos especiales con los fósforos de seguridad Fogata",
     "precio": "0.49",
     "stock": 89,
-    "imagen": "https://promartecuador.vtexassets.com/arquivos/ids/195832/28667_01.jpg?v=638386970283930000",
+    "imagen": "https://supermaxi-225de.kxcdn.com/wp-content/uploads/2025/06/7861020000271-1-20.jpg",
     "activo": true,
     "fecha_creacion": "2026-04-18T00:08:54.474Z"
   }
@@ -288,7 +288,7 @@
     "descripcion": "Vela Universal Blanca Lisa Funda",
     "precio": "0.85",
     "stock": 59,
-    "imagen": "https://ferrotiendams.com/wp-content/uploads/imagen_2023-05-25_170309841.webp",
+    "imagen": "https://supermaxi-225de.kxcdn.com/wp-content/uploads/2025/06/7861042579045-1-18.jpg",
     "activo": true,
     "fecha_creacion": "2026-04-18T00:11:09.406Z"
   }
@@ -302,7 +302,7 @@
     "descripcion": "La más deliciosa combinación de caramelo y nougat de maní en una envoltura de chocolate que calma tu hambre",
     "precio": "0.64",
     "stock": 70,
-    "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMt4AOUFUWdDg51vdbSUb1F_gY6QMwoZmn9A&s",
+    "imagen": "https://supermaxi-225de.kxcdn.com/wp-content/uploads/2024/08/40000514251-1-27.png",
     "activo": true,
     "fecha_creacion": "2026-04-18T00:17:08.661Z"
   }
@@ -312,11 +312,11 @@
   "pk": 19,
   "fields": {
     "categoria": 7,
-    "nombre": "Barra de Chocolate TWIX",
-    "descripcion": "Deliciosa barra de chocolate. Está compuesta de una galleta en el centro, cubierta de caramelo y recubierta de chocolate con leche",
+    "nombre": "Barra De Chocolate Con Maní",
+    "descripcion": "Deliciosa barra de chocolate.",
     "precio": "1.05",
     "stock": 87,
-    "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8X4RDyTjdB0wCmr1dxCG6E-vUQUM0oKP6BA&s",
+    "imagen": "https://supermaxi-225de.kxcdn.com/wp-content/uploads/2025/06/7861091148124-1-1.png",
     "activo": true,
     "fecha_creacion": "2026-04-18T00:20:10.736Z"
   }
@@ -326,11 +326,11 @@
   "pk": 20,
   "fields": {
     "categoria": 7,
-    "nombre": "Bocaditos de maiz sabor a queso Doritos",
-    "descripcion": "Snack crujiente con sabores intensos, ideal para compartir",
-    "precio": "0.45",
+    "nombre": "Bocaditos De Maíz Sabor Mega Queso",
+    "descripcion": "Snack crujiente con sabores intensos, ideal para compartir.",
+    "precio": "3.63",
     "stock": 67,
-    "imagen": "https://santamaria.vtexassets.com/arquivos/ids/163888/31737_G.jpg?v=638974574956270000",
+    "imagen": "https://supermaxi-225de.kxcdn.com/wp-content/uploads/2026/03/7861018591897-1-3.png",
     "activo": true,
     "fecha_creacion": "2026-04-18T00:22:14.125Z"
   }
@@ -354,11 +354,11 @@
   "pk": 22,
   "fields": {
     "categoria": 7,
-    "nombre": "Sorbetes Locos",
-    "descripcion": "Disfruta de 15 sorbetitos de caramelo en polvo en forma de sorbete, acompañado de stickers coleccionables y un rompecabezas didáctico para estimular la creatividad. Perfecto para niños y amantes de los dulces, una locura de sabores y colores",
-    "precio": "0.25",
+    "nombre": "Barrilete",
+    "descripcion": "Caramelo Masticables Sabor Tutti Frutti BARRILETE 400 G",
+    "precio": "2.30",
     "stock": 88,
-    "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRX8AiScWfVi6CKQ24gTiuL_UggtTjzp85LtA&s",
+    "imagen": "https://supermaxi-225de.kxcdn.com/wp-content/uploads/2024/10/7702993602508-1.png",
     "activo": true,
     "fecha_creacion": "2026-04-18T00:26:34.770Z"
   }
@@ -372,7 +372,7 @@
     "descripcion": "Un licor seco obtenido con alcohol extra puro a partir de subproductos de melaza, miel virgen y azúcar, con su tradicional sabor a esencia de anís",
     "precio": "7.69",
     "stock": 90,
-    "imagen": "https://http2.mlstatic.com/D_NQ_NP_743578-MEC89924749385_082025-O.webp",
+    "imagen": "https://supermaxi-225de.kxcdn.com/wp-content/uploads/2025/08/7702049000548-1-20.png",
     "activo": true,
     "fecha_creacion": "2026-04-18T00:29:17.438Z"
   }
@@ -386,7 +386,7 @@
     "descripcion": "Bebida refrescante y nutritiva a base de malta, con ingredientes naturales. Enriquecida con vitaminas y minerales",
     "precio": "0.43",
     "stock": 90,
-    "imagen": "https://www.cervecerianacional.ec/sites/g/files/seuoyk1251/files/2023-03/pony%20malta%20330.png",
+    "imagen": "https://supermaxi-225de.kxcdn.com/wp-content/uploads/2025/03/9497003006-1-1.png",
     "activo": true,
     "fecha_creacion": "2026-04-18T00:30:41.627Z"
   }
@@ -403,6 +403,32 @@
     "imagen": "https://supermaxi-225de.kxcdn.com/wp-content/uploads/2025/08/9497000661-1-11-300x300.jpg",
     "activo": true,
     "fecha_creacion": "2026-04-18T00:31:59.695Z"
+  }
+},
+{
+  "model": "api.pedido",
+  "pk": 1,
+  "fields": {
+    "email": "byron22@gmail.com",
+    "nombre": "Byron",
+    "apellidos": "Melo",
+    "cedula": "1729309946",
+    "telefono": "0960027228",
+    "metodo_envio": "DOMICILIO",
+    "direccion_envio": "Calle E14, Quito",
+    "total": "138.00",
+    "fecha_pedido": "2026-04-17T17:16:16.510Z",
+    "pagado": false
+  }
+},
+{
+  "model": "api.detallepedido",
+  "pk": 1,
+  "fields": {
+    "pedido": 1,
+    "producto": 4,
+    "cantidad": 4,
+    "precio_unitario": "34.50"
   }
 }
 ]

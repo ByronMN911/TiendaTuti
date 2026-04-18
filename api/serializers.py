@@ -7,8 +7,7 @@ class CategoriaSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ProductoSerializer(serializers.ModelSerializer):
-    categoria_nombre = serializers.CharField(source='categoria.nombre', read_only=True)
-
+    categoria = serializers.ReadOnlyField(source='categoria.nombre')
     class Meta:
         model = Producto
         fields = '__all__'
