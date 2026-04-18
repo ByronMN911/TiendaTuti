@@ -1,13 +1,13 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+// frontend/src/app/app.config.ts
+import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { routes } from './app.routes';
-
+import { errorInterceptor } from './core/services/interceptors/error.interceptor';
 export const appConfig: ApplicationConfig = {
   providers: [
-    // Esto le dice a Angular cómo manejar los cambios de datos (Misifú)
-    provideZoneChangeDetection({ eventCoalescing: true }), 
     provideRouter(routes),
-    provideHttpClient()
+    // 🟢 Agregamos withInterceptors aquí
+    provideHttpClient(withInterceptors([errorInterceptor]))
   ]
 };
