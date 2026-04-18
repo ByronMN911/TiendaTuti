@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common'; // Para usar *ngIf
 import { Api } from './api'; // Importamos el servicio de conexión
 import { NavbarComponent } from './shared/navbar/navbar';
 import { FooterComponent } from './shared/footer/footer';
+import { ToastComponent } from './shared/toast/toast'
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, NavbarComponent, FooterComponent],
+  imports: [RouterOutlet, CommonModule, NavbarComponent, FooterComponent, ToastComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

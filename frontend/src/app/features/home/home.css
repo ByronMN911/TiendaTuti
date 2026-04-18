@@ -1,0 +1,69 @@
+    /* Colores locales por si no están en tu :root */
+    .text-tuti-azul { color: var(--tuti-azul, #003DA5); }
+    .text-tuti-naranja { color: var(--tuti-naranja, #F26522); }
+    .btn-tuti-naranja { 
+      background-color: var(--tuti-naranja, #F26522); 
+      color: white; 
+      border-radius: 30px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-tuti-naranja:hover {
+      background-color: var(--tuti-naranja-dark, #d4541a);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(242, 101, 34, 0.4);
+    }
+
+    /* Diseño del Banner con un degradado azul institucional */
+    .hero-section {
+      height: 450px;
+      background: linear-gradient(135deg, rgba(0, 61, 165, 0.95) 0%, rgba(0, 45, 122, 0.95) 100%), url('https://via.placeholder.com/1200x500/003DA5/ffffff?text=Fondo+Tuti') center/cover;
+      border-radius: 0 0 40px 40px;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-content {
+      max-width: 800px;
+    }
+
+    /* Cajas de categoría limpias con hover sutil */
+    .category-box {
+      background: white;
+      border-radius: 16px;
+      padding: 20px 10px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border: 1px solid #eee;
+      transition: all 0.3s ease;
+    }
+
+    .category-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      border-color: var(--tuti-naranja, #F26522);
+    }
+
+    .spinner-border.text-naranja {
+      color: var(--tuti-naranja, #F26522) !important;
+    }
+    .typing-text {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 4px solid white;
+  width: 0;
+  animation:
+    typing       2.5s steps(26, end) forwards,
+    blink-cursor 0.75s step-end      infinite;
+}
+
+@keyframes typing {
+  from { width: 0;    }
+  to   { width: 100%; }
+}
+
+@keyframes blink-cursor {
+  0%, 100% { border-color: white;       }
+  50%      { border-color: transparent; }
+}

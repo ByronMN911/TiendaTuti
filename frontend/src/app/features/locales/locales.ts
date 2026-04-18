@@ -1,108 +1,27 @@
-import { Component, signal, computed } from '@angular/core';
+import { Component, signal, computed, OnInit, inject } from '@angular/core'; // <-- 1. Agregamos OnInit e inject
 import { CommonModule } from '@angular/common';
 import { GoogleMapsModule } from '@angular/google-maps';
-
-interface Tienda {
-  id: number;
-  nombre: string;
-  provincia: string;
-  ciudad: string;
-  direccion: string;
-  lat: number;
-  lng: number;
-}
+import { ApiService, Tienda } from '../../core/services/api';
+import { ToastService } from '../../core/services/toast'; 
 
 @Component({
   selector: 'app-locales',
   standalone: true,
   imports: [CommonModule, GoogleMapsModule],
-  template: `
-    <div class="container-fluid py-4 bg-light">
-      <div class="row g-4">
-        
-        <div class="col-lg-4">
-          <div class="card border-0 shadow-sm p-4 h-100">
-            <h4 class="text-tuti-azul fw-bold mb-4">📍 Encuentra tu Tuti</h4>
-            
-            <div class="mb-3">
-              <label class="form-label fw-bold">Provincia</label>
-              <select class="form-select form-control-tuti" (change)="cambiarProvincia($event)">
-                <option value="Todas">Todas las provincias</option>
-                <option value="Pichincha">Pichincha</option>
-                <option value="Guayas">Guayas</option>
-              </select>
-            </div>
-
-            <hr>
-
-            <div class="locales-lista overflow-auto" style="max-height: 500px;">
-              @for (tienda of tiendasFiltradas(); track tienda.id) {
-                <div class="tienda-item p-3 mb-2 rounded" 
-                     [class.active]="tiendaSeleccionada()?.id === tienda.id"
-                     (click)="seleccionarTienda(tienda)">
-                  <h6 class="fw-bold mb-1">{{ tienda.nombre }}</h6>
-                  <p class="small text-muted mb-0"><i class="bi bi-geo-alt"></i> {{ tienda.direccion }}</p>
-                  <p class="small text-tuti-azul mb-0 fw-bold">{{ tienda.ciudad }}</p>
-                </div>
-              } @empty {
-                <p class="text-center text-muted py-4">No hay tiendas en esta ubicación.</p>
-              }
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-8">
-          <div class="card border-0 shadow-sm overflow-hidden" style="height: 650px;">
-            <google-map 
-              height="650px" 
-              width="100%" 
-              style="display: block; height: 650px;"
-              [center]="center()" 
-              [zoom]="zoom()"
-              [options]="mapOptions">
-              
-              @for (tienda of tiendasFiltradas(); track tienda.id) {
-                <map-marker 
-                  [position]="{lat: tienda.lat, lng: tienda.lng}"
-                  [title]="tienda.nombre"
-                  (mapClick)="seleccionarTienda(tienda)">
-                </map-marker>
-              }
-            </google-map>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  `,
-  styles: [`
-    .text-tuti-azul { color: #003DA5; }
-    .form-control-tuti:focus { border-color: #F26522; box-shadow: 0 0 0 0.2rem rgba(242, 101, 34, 0.2); }
-    
-    .tienda-item {
-      cursor: pointer;
-      border: 1px solid #eee;
-      transition: all 0.2s ease;
-      background: white;
-    }
-    
-    .tienda-item:hover { border-color: #F26522; background: #fffaf7; }
-    .tienda-item.active { border-color: #003DA5; background: #eef4ff; border-left: 5px solid #003DA5; }
-
-    .locales-lista::-webkit-scrollbar { width: 6px; }
-    .locales-lista::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
-  `]
+  templateUrl: './locales.html',
+  styleUrl: './locales.css',
 })
-export class LocalesComponent {
-  // Datos simulados (Puedes mover esto a un servicio después)
-  private readonly todasLasTiendas: Tienda[] = [
-    { id: 1, nombre: 'Tuti La Floresta', provincia: 'Pichincha', ciudad: 'Quito', direccion: 'Av. Coruña y Lérida', lat: -0.2104, lng: -78.4842 },
-    { id: 2, nombre: 'Tuti Quitumbe', provincia: 'Pichincha', ciudad: 'Quito', direccion: 'Av. Quitumbe Ñan', lat: -0.3015, lng: -78.5583 },
-    { id: 3, nombre: 'Tuti Urdesa', provincia: 'Guayas', ciudad: 'Guayaquil', direccion: 'Av. Víctor Emilio Estrada', lat: -2.1648, lng: -79.9123 },
-    { id: 4, nombre: 'Tuti Samborondón', provincia: 'Guayas', ciudad: 'Guayaquil', direccion: 'Km 1.5 Av. Samborondón', lat: -2.1432, lng: -79.8665 },
-  ];
+export class LocalesComponent implements OnInit { //Le decimos que usará OnInit
+  
+  // 3. Inyectamos tu servicio para poder hablar con Django
+  private apiService = inject(ApiService);
 
-  // Signals para el estado
+  private toastService = inject(ToastService);  
+
+  // caja vacía (Signal) esperando llenarse con los datos reales
+  todasLasTiendas = signal<Tienda[]>([]);
+
+  // Signals para el estado (Todo esto se queda igual)
   filtroProvincia = signal('Todas');
   tiendaSeleccionada = signal<Tienda | null>(null);
   center = signal({ lat: -1.8312, lng: -78.1834 }); // Centro del Ecuador
@@ -114,10 +33,27 @@ export class LocalesComponent {
     streetViewControl: false
   };
 
+  // como todasLasTiendas ahora es un Signal, lleva paréntesis ()
   tiendasFiltradas = computed(() => {
     const prov = this.filtroProvincia();
-    return prov === 'Todas' ? this.todasLasTiendas : this.todasLasTiendas.filter(t => t.provincia === prov);
+    const tiendas = this.todasLasTiendas(); // Leemos la caja
+    
+    return prov === 'Todas' ? tiendas : tiendas.filter(t => t.provincia === prov);
   });
+
+  // se ejecuta apenas abres la página de locales
+  ngOnInit() {
+    // Llama a Django y pide la lista de locales
+    this.apiService.getLocales().subscribe({
+      next: (data) => {
+        this.todasLasTiendas.set(data); // Metemos los datos reales en la caja
+      },
+      error: (err) => {
+        console.error('Error cargando locales desde el backend', err);
+        this.toastService.showError('Error de servidor: No se pudieron cargar los locales.');
+      }
+    });
+  }
 
   cambiarProvincia(event: Event) {
     const valor = (event.target as HTMLSelectElement).value;
@@ -132,6 +68,6 @@ export class LocalesComponent {
   seleccionarTienda(tienda: Tienda) {
     this.tiendaSeleccionada.set(tienda);
     this.center.set({ lat: tienda.lat, lng: tienda.lng });
-    this.zoom.set(16); // Zoom de calle para ver el local
+    this.zoom.set(16);
   }
 }
