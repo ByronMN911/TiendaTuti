@@ -36,6 +36,6 @@ export class ApiService {
     return this.http.get<Producto[]>(`${this.API_URL}/productos/?search=${query}`);
   }
   getLocales(): Observable<Tienda[]> {
-  return this.http.get<Tienda[]>(`${this.API_URL}/locales/`);
+    return this.http.get<Tienda[]>(`${this.API_URL}/tiendas/`);
 }
 }
