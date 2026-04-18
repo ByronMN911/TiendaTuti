@@ -1,6 +1,6 @@
 from rest_framework import viewsets, permissions, filters
-from .models import Categoria, Producto, Pedido
-from .serializers import CategoriaSerializer, ProductoSerializer, PedidoSerializer
+from .models import Categoria, Producto, Pedido, Tienda
+from .serializers import CategoriaSerializer, ProductoSerializer, PedidoSerializer, TiendaSerializer
 
 class CategoriaViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Categoria.objects.all()
@@ -22,3 +22,9 @@ class PedidoViewSet(viewsets.ModelViewSet):
     serializer_class = PedidoSerializer
     permission_classes = [permissions.AllowAny] # Permite Guest Checkout
     http_method_names = ['post'] # Solo permitimos crear pedidos (POST), no listarlos públicamente por seguridad
+
+# --- Endpoint de Tiendas ---
+class TiendaViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Tienda.objects.all()
+    serializer_class = TiendaSerializer
+    permission_classes = [permissions.AllowAny]
