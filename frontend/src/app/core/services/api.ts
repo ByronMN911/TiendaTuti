@@ -3,6 +3,16 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Producto } from '../../shared/product-card/product-card';
 
+export interface Tienda {
+  id: number;
+  nombre: string;
+  provincia: string;
+  ciudad: string;
+  direccion: string;
+  lat: number;
+  lng: number;
+}
+
 @Injectable({ providedIn: 'root' })
 export class ApiService {
   private http = inject(HttpClient);
@@ -24,4 +34,7 @@ export class ApiService {
   buscarProductos(query: string): Observable<Producto[]> {
     return this.http.get<Producto[]>(`${this.API_URL}/productos/?search=${query}`);
   }
+  getLocales(): Observable<Tienda[]> {
+    return this.http.get<Tienda[]>(`${this.API_URL}/tiendas/`);
+}
 }
