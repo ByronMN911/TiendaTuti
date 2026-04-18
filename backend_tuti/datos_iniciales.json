@@ -435,7 +435,7 @@
   "model": "api.tienda",
   "pk": 1,
   "fields": {
-    "nombre": "Tuti La Floresta",
+    "nombre": "TuTi La Floresta",
     "provincia": "Pichincha",
     "ciudad": "Quito",
     "direccion": "Madrid E12-71, 170143 Quito",
@@ -447,7 +447,7 @@
   "model": "api.tienda",
   "pk": 2,
   "fields": {
-    "nombre": "Tuti Quitumbe",
+    "nombre": "TuTi Quitumbe",
     "provincia": "Pichincha",
     "ciudad": "Quito",
     "direccion": "Av. Llira Ñan y Pachamama &, 170146 Quito",
@@ -471,7 +471,7 @@
   "model": "api.tienda",
   "pk": 4,
   "fields": {
-    "nombre": "Tuti Simón Bolivar",
+    "nombre": "TuTi Simón Bolivar",
     "provincia": "Pichincha",
     "ciudad": "Quito",
     "direccion": "Av. Simón Bolívar &, 170145 Quito",
@@ -489,6 +489,54 @@
     "direccion": "QG43+HG4, Ricardo Izurieta del Castillo, 170145 Quito",
     "latitud": "-0.243610",
     "longitud": "-78.496130"
+  }
+},
+{
+  "model": "api.tienda",
+  "pk": 6,
+  "fields": {
+    "nombre": "TuTi 10 de Agosto",
+    "provincia": "Guayas",
+    "ciudad": "Guayaquil",
+    "direccion": "R443+WMR, Blvd. 9 de Octubre, 090311 Guayaquil",
+    "latitud": "-2.192490",
+    "longitud": "-79.895150"
+  }
+},
+{
+  "model": "api.tienda",
+  "pk": 7,
+  "fields": {
+    "nombre": "TuTi Eloy Alfaro",
+    "provincia": "Guayas",
+    "ciudad": "Guayaquil",
+    "direccion": "Q4W8+F9H, 090314 Guayaquil",
+    "latitud": "-2.203550",
+    "longitud": "-79.883660"
+  }
+},
+{
+  "model": "api.tienda",
+  "pk": 8,
+  "fields": {
+    "nombre": "TuTi Pascuales",
+    "provincia": "Guayas",
+    "ciudad": "Guayaquil",
+    "direccion": "W3J9+M2 Guayaquil, C. 28N-O Pasaje",
+    "latitud": "-2.068140",
+    "longitud": "-79.931960"
+  }
+},
+{
+  "model": "api.tienda",
+  "pk": 9,
+  "fields": {
+    "nombre": "TuTi Prosperina",
+    "provincia": "Guayas",
+    "ciudad": "Guayaquil",
+    "direccion": "V357+F82, C. 18F N-O, 090610 Guayaquil",
+    "latitud": "-2.141170",
+    "longitud": "-79.935940"
   }
 }
 ]

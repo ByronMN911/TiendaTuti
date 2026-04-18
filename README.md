@@ -1,46 +1,102 @@
-Proyecto Fullstack: Django + Angular 
+
+🛒 Proyecto Tienda Tuti - Fullstack Dockerizado
 Materia: Calidad de Software
 
-Desarrollador: Byron Melo
+Institución: Instituto Tecnológico Quito (ITQ)
 
-Este proyecto integra un backend robusto en Django REST Framework con un frontend dinámico en Angular.
+Líder Técnico & DevOps: Byron Melo
 
-Tecnologías Usadas
-Backend: Python 3.13.7, Django 6.0.3, Django REST Framework 3.17.1.
+Desarrollador Backend: Mathew
 
-Frontend: Angular 19+, TypeScript.
+Desarrolladora Frontend: Génesis
 
-Base de Datos: SQLite (Desarrollo).
+Este proyecto es un sistema de e-commerce robusto que integra validaciones de seguridad de grado profesional, validación de cédula ecuatoriana (Módulo 10) y una arquitectura basada en contenedores.
 
-Guía de Despliegue 
+🏗️ Arquitectura del Proyecto
+El sistema está dividido en dos grandes bloques orquestados por Docker:
 
-1. Configuración del Backend (Terminal 1)
+Backend: API REST desarrollada en Django con validaciones de "Doble Candado" (Serializer + Database).
 
-# 1. Crear el entorno virtual
+Frontend: Aplicación dinámica en Angular con interceptores de errores globales.
+
+Base de Datos: PostgreSQL 15 (Producción/Docker) y SQLite (Desarrollo local).
+
+🛠️ Tecnologías Usadas
+Backend: Python 3.13, Django 6.0.3, Django REST Framework.
+
+Frontend: Angular 21.2.3, TypeScript, Node 22.17.
+
+DevOps: Docker, Docker Compose, Nginx.
+
+Base de Datos: PostgreSQL (Contenedorizado).
+
+📂 Estructura de Archivos
+
+CALIDAD_DE_SOFTWARE/
+├── backend_tuti/          # Servidor Django (API)
+│   ├── api/               # Lógica de negocio y validaciones
+│   ├── backend/           # Configuraciones y .env
+│   └── Dockerfile         # Receta de Python 3.13
+├── frontend/              # Aplicación Angular
+│   ├── src/               # Componentes y servicios
+│   └── Dockerfile         # Receta de Node 22 + Nginx
+└── docker-compose.yml     # Orquestador del sistema completo
+
+🚀 Guía de Despliegue con Docker (Recomendado)
+Esta es la forma más rápida de levantar el proyecto con las 8 tiendas precargadas.
+
+Asegúrate de tener Docker Desktop iniciado.
+
+En la raíz del proyecto, ejecuta:
+
+Bash
+docker-compose up --build
+Acceso al sistema:
+
+Frontend: http://localhost:4200
+
+API Backend: http://localhost:8000/api/tiendas/
+
+Admin Django: http://localhost:8000/admin (User: admin / Pass: adminpassword)
+
+🔧 Despliegue Manual (Desarrollo)
+Si prefieres trabajar sin Docker, sigue estos pasos:
+
+1. Configuración del Backend
+Bash
+# Entrar a la carpeta del servidor
+cd backend_tuti
+
+# Crear y activar entorno virtual
 python -m venv venv
-
-# 2. Activar el entorno
-# Windows:
 .\venv\Scripts\activate
 
-# 3. Instalar librerías
+# Instalar dependencias
 pip install -r requirements.txt
 
-# 4. Crear la base de datos local
+# Migrar y cargar datos de las 8 tiendas
 python manage.py migrate
+python manage.py loaddata datos_iniciales.json
 
-# 5. Iniciar servidor
+# Iniciar
 python manage.py runserver
-El backend correrá en: http://127.0.0.1:8000/
-
-2. Configuración del Frontend (Terminal 2)
-
-# 1. Entrar a la carpeta
+2. Configuración del Frontend
+Bash
+# Entrar a la carpeta del cliente
 cd frontend
 
-# 2. Instalar dependencias de Node
-npm install
+# Instalar dependencias (usando legacy-peer-deps por ngx-bootstrap)
+npm install --legacy-peer-deps
 
-# 3. Iniciar servidor de desarrollo
+# Iniciar servidor de desarrollo
 ng serve
-El frontend correrá en: http://localhost:4200/
+
+
+🛡️ Características Destacadas
+Validaciones de Seguridad: Los campos de nombre, apellido y teléfono están protegidos con expresiones regulares (Regex) tanto en el cliente como en el servidor.
+
+Módulo 10: Validación automática de cédulas ecuatorianas en el proceso de checkout.
+
+Control de Stock: El sistema impide compras si no hay existencias reales en la base de datos.
+
+Error Interceptor: Captura automática de errores del servidor para mostrar mensajes amigables al usuario (Toasts).
