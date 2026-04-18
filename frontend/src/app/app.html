@@ -1,13 +1,7 @@
 <app-navbar></app-navbar>
-
 <main style="padding-top: 72px; min-height: 100vh; background-color: var(--light-bg, #f4f6f8);">
-  
-  <div *ngIf="respuesta" style="background: #e6ffe6; padding: 10px; text-align: center; border-bottom: 1px solid green;">
-    🟢 Conexión al Backend exitosa: {{ respuesta | json }}
-  </div>
-
   <router-outlet></router-outlet>
   <app-toast></app-toast>
 </main>
-
 <app-footer></app-footer>
+<app-toast></app-toast>

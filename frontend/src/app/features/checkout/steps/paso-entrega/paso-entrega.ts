@@ -9,7 +9,7 @@ import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
   styleUrl: './paso-entrega.css'
 })
 export class PasoEntregaComponent {
-  @Output() siguiente = new EventEmitter<void>();
+  @Output() siguiente = new EventEmitter<any>();
   @Output() anterior  = new EventEmitter<void>();
   
   private fb = new FormBuilder();
@@ -23,6 +23,11 @@ export class PasoEntregaComponent {
 
   onSiguiente(): void {
     this.form.markAllAsTouched();
-    if (this.form.valid) this.siguiente.emit();
+    if (this.form.valid) {
+      this.siguiente.emit({
+        direccion_envio: this.form.value.direccion + ', ' + this.form.value.ciudad,
+        metodo_envio: 'DOMICILIO' // o lo que corresponda
+      });
+    }
   }
 }

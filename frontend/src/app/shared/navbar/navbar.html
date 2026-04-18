@@ -2,23 +2,23 @@
       <div class="container">
 
         <a class="navbar-brand d-flex align-items-center gap-2" routerLink="/home">
-  <img src="/assets/logo-tuti.png" alt="Logo Tuti" 
+       <img src="/assets/logo-tuti.png" alt="Logo Tuti" 
        class="object-fit-contain logo-tuti">
-</a>
+      </a>
 
         <div class="d-none d-md-flex flex-grow-1 mx-4">
           <div class="input-group">
-            <input 
-              type="text" 
-              class="form-control buscador-input" 
-              placeholder="Buscar productos..."
-              #searchInput
-              (keyup.enter)="buscar(searchInput.value)"
-            >
-            <button class="btn btn-naranja" (click)="buscar(searchInput.value)">
-              <i class="bi bi-search"></i>
-            </button>
-          </div>
+         <input
+          #searchBox
+    type="text"
+    class="form-control buscador-input"
+    placeholder="Buscar productos..."
+    (keyup.enter)="buscar(searchBox.value)"
+  />
+  <button class="btn btn-naranja" type="button" (click)="buscar(searchBox.value)">
+    <i class="bi bi-search"></i>
+  </button>
+</div>
         </div>
         <a routerLink="/locales" class="btn fw-bold me-2 text-decoration-none" style="color: var(--tuti-azul);">
         <img src="/assets/ubi-tuti.png" alt="ubi Tuti" height="40" 

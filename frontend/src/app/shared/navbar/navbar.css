@@ -2,11 +2,11 @@
     .navbar-tuti {
       background-color: var(--tuti-blanco);
       border-bottom: 2px solid var(--tuti-naranja);
-      padding: 0.25rem 0;   /* menos padding para compensar */
-      min-height: 64px;
+      padding: 0.5rem 0;  /* antes era 0.75rem */
+     min-height: 64px; 
     }
     .logo-tuti {
-    max-height: 100px;     /* tamaño del logo */
+    max-height: 90px;     /* tamaño del logo */
     width: auto;          /* mantiene proporciones sin deformarse */
    }
 

@@ -1,15 +1,13 @@
-// src/app/shared/navbar/navbar.component.ts
 import { Component, inject } from '@angular/core';
-import { RouterLink, RouterLinkActive, Router } from '@angular/router';
+import { RouterLink, Router } from '@angular/router'; // Mantenemos los 3 de Génesis
 import { CartService } from '../../core/services/cart';
-
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
-  templateUrl: './navbar.html',
-  styleUrl: './navbar.css'
+  imports: [RouterLink],
+  templateUrl: './navbar.html', // Versión HEAD
+  styleUrl: './navbar.css'      // Versión HEAD
 })
 export class NavbarComponent {
   protected readonly cartService = inject(CartService);
@@ -17,8 +15,7 @@ export class NavbarComponent {
 
   buscar(termino: string) {
     if (termino.trim()) {
-      // Redirige a la página del catálogo y le pasa el término en la URL
-      // Ejemplo: localhost:4200/catalogo?search=lacteos
+      // Redirige al catálogo con el parámetro de búsqueda
       this.router.navigate(['/catalogo'], { queryParams: { search: termino } });
     }
   }

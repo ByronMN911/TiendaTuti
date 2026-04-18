@@ -48,7 +48,7 @@ function validarCedulaEcuatoriana(control: AbstractControl): ValidationErrors | 
   styleUrl: './paso-identificacion.css',
 })
 export class PasoIdentificacionComponent {
-  @Output() siguiente = new EventEmitter<void>();
+  @Output() siguiente = new EventEmitter<any>();
   @Output() anterior  = new EventEmitter<void>();
 
   private fb = new FormBuilder();
@@ -117,10 +117,9 @@ export class PasoIdentificacionComponent {
   }
 
   onSiguiente(): void {
-    // Marcar todos como tocados para mostrar errores
     this.form.markAllAsTouched();
     if (this.form.valid) {
-      this.siguiente.emit();
+      this.siguiente.emit(this.form.value); // ¡Aquí enviamos los datos!
     }
   }
 }

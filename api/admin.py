@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Categoria, Producto, Pedido, DetallePedido
+from .models import Categoria, Producto, Pedido, DetallePedido, Tienda
 
 @admin.register(Categoria)
 class CategoriaAdmin(admin.ModelAdmin):
@@ -25,3 +25,10 @@ class PedidoAdmin(admin.ModelAdmin):
     list_filter = ('pagado', 'metodo_envio', 'fecha_pedido')
     search_fields = ('nombre', 'apellidos', 'cedula', 'email')
     inlines = [DetallePedidoInline]
+
+# Registro de las tiendas
+@admin.register(Tienda)
+class TiendaAdmin(admin.ModelAdmin):
+    list_display = ('nombre', 'ciudad', 'provincia')
+    list_filter = ('provincia', 'ciudad')
+    search_fields = ('nombre', 'direccion')
