@@ -14,9 +14,11 @@ export class NavbarComponent {
   private router = inject(Router); 
 
   buscar(termino: string) {
-    if (termino.trim()) {
-      // Redirige al catálogo con el parámetro de búsqueda
-      this.router.navigate(['/catalogo'], { queryParams: { search: termino } });
+    // elimina cualquier símbolo raro y deja solo letras y números
+    const terminoLimpio = termino.replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\s]/g, '');
+    
+    if (terminoLimpio.trim()) {
+      this.router.navigate(['/catalogo'], { queryParams: { search: terminoLimpio } });
     }
   }
 }

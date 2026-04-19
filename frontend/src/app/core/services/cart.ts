@@ -14,6 +14,8 @@ export class CartService {
   private apiService = inject(ApiService);
   private _items = signal<CartItem[]>([]);
   readonly items = this._items.asReadonly();
+  private _ultimoPedido = signal<{items: CartItem[], total: number} | null>(null);
+  readonly ultimoPedido = this._ultimoPedido.asReadonly();
 
   readonly totalItems = computed(() =>
     this._items().reduce((acc, item) => acc + item.cantidad, 0)
@@ -48,6 +50,14 @@ export class CartService {
   vaciarCarrito(): void {
     this._items.set([]);
   }
+  // Nuevo método que guarda antes de vaciar
+  guardarYVaciar(): void {
+  this._ultimoPedido.set({
+    items: this._items(),
+    total: this.totalPrecio()
+  });
+  this._items.set([]);
+}
 
   // --- FUNCIÓN QUE FALTABA PARA CONECTAR CON DJANGO ---
   finalizarCompra(datosCliente: any) {

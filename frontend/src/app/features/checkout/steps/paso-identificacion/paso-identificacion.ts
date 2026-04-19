@@ -1,4 +1,3 @@
-// src/app/features/checkout/steps/paso-identificacion/paso-identificacion.component.ts
 import { Component, Output, EventEmitter } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 
@@ -53,29 +52,32 @@ export class PasoIdentificacionComponent {
 
   private fb = new FormBuilder();
 
-  // Formulario reactivo con todas las validaciones
+  // Formulario reactivo con todas las validaciones cerradas correctamente
   form = this.fb.group({
     email: ['', [
       Validators.required,
       Validators.email
     ]],
     nombre: ['', [
-      Validators.required,
+      Validators.required, 
+      Validators.pattern(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/),
       Validators.minLength(2)
     ]],
     apellido: ['', [
       Validators.required,
+      Validators.pattern(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/),
       Validators.minLength(2)
     ]],
     cedula: ['', [
       Validators.required,
+      Validators.pattern(/^[0-9]{10}$/),
       validarCedulaEcuatoriana  // ← Nuestro validador personalizado
     ]],
     telefono: ['', [
       Validators.required,
       Validators.pattern(/^09\d{8}$/) // Formato: 09XXXXXXXX (10 dígitos)
     ]]
-  });
+  }); // <-- ¡Aquí estaba el error! Faltaba cerrar el formulario antes de crear funciones.
 
   /** Verifica si debe mostrarse el error de un campo */
   mostrarError(campo: string): boolean {
@@ -95,14 +97,17 @@ export class PasoIdentificacionComponent {
       },
       nombre: {
         required:  'El nombre es obligatorio.',
-        minlength: 'El nombre debe tener al menos 2 caracteres.'
+        minlength: 'El nombre debe tener al menos 2 caracteres.',
+        pattern:   'El nombre solo puede contener letras y espacios.'
       },
       apellido: {
         required:  'El apellido es obligatorio.',
-        minlength: 'El apellido debe tener al menos 2 caracteres.'
+        minlength: 'El apellido debe tener al menos 2 caracteres.',
+        pattern:   'El apellido solo puede contener letras y espacios.'
       },
       cedula: {
         required:       'La cédula es obligatoria.',
+        pattern:        'La cédula debe tener 10 dígitos numéricos.',
         cedulaInvalida: errors['cedulaInvalida'] as string
       },
       telefono: {

@@ -9,8 +9,13 @@ export interface Tienda {
   provincia: string;
   ciudad: string;
   direccion: string;
-  lat: number;
-  lng: number;
+  latitud: number;
+  longitud: number;
+}
+
+export interface Categoria {
+  id: number;
+  nombre: string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -22,7 +27,10 @@ export class ApiService {
     return this.http.get<Producto[]>(`${this.API_URL}/productos/`);
   }
 
-  // --- FUNCIÓN QUE FALTABA PARA EL PEDIDO ---
+  getCategorias(): Observable<Categoria[]> {
+    return this.http.get<Categoria[]>(`${this.API_URL}/categorias/`);
+  }
+
   crearPedido(pedidoData: any): Observable<any> {
     return this.http.post<any>(`${this.API_URL}/pedidos/`, pedidoData);
   }
@@ -34,7 +42,8 @@ export class ApiService {
   buscarProductos(query: string): Observable<Producto[]> {
     return this.http.get<Producto[]>(`${this.API_URL}/productos/?search=${query}`);
   }
+
   getLocales(): Observable<Tienda[]> {
     return this.http.get<Tienda[]>(`${this.API_URL}/tiendas/`);
-}
+  }
 }

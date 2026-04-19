@@ -37,24 +37,24 @@
         @switch (pasoActual()) {
           @case (1) {
             <app-paso-carrito
-              (siguiente)="irAlPaso(2)"
+              (siguiente)="irAlPaso(2, $event)"
             />
           }
           @case (2) {
             <app-paso-identificacion
               (anterior)="irAlPaso(1)"
-              (siguiente)="irAlPaso(3)"
+              (siguiente)="irAlPaso(3, $event)"
             />
           }
           @case (3) {
             <app-paso-entrega
-              (anterior)="irAlPaso(2)"
-              (siguiente)="irAlPaso(4)"
+              (anterior)="irAlPaso(2, $event)"
+              (siguiente)="irAlPaso(4, $event)"
             />
           }
           @case (4) {
             <app-paso-pago
-              (anterior)="irAlPaso(3)"
+              (anterior)="irAlPaso(3, $event)"
               (confirmar)="confirmarPedido()"
             />
           }

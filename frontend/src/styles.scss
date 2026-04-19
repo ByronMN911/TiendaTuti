@@ -7,8 +7,8 @@
    Colores: Naranja (#F26522) + Azul (#003DA5)
 ======================================== */
 :root {
-  --tuti-naranja:    #FFDE21;
-  --tuti-naranja-dark: #de8520;
+  --tuti-naranja:    #FACC15;
+  --tuti-naranja-dark: #de6f20;
   --tuti-azul:        #003DA5;
   --tuti-azul-dark:   #002d7a;
   --tuti-gris-claro:  #f8f8f8;
@@ -19,10 +19,12 @@
 }
 
 /* Reset / base */
+
 body {
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-family: 'Poppins', sans-serif;
   background-color: var(--tuti-gris-claro);
   color: #2d2d2d;
+  padding-top: 30px;
 }
 
 a {
