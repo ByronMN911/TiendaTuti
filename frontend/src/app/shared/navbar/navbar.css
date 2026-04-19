@@ -6,8 +6,8 @@
      min-height: 64px; 
     }
     .logo-tuti {
-    max-height: 90px;     /* tamaño del logo */
-    width: auto;          /* mantiene proporciones sin deformarse */
+    height: 80px;   /* altura fija, no max-height */
+    width: auto;
    }
 
     /* Input de búsqueda con borde naranja al enfocar */
@@ -29,12 +29,12 @@
 
     /* Botón outline azul para el carrito */
     .btn-outline-azul {
-      border-color: var(--tuti-azul);
+      border-color: var(--tuti-naranja);
       color: var(--tuti-azul);
       border-radius: 8px;
     }
     .btn-outline-azul:hover {
-      background-color: var(--tuti-azul);
+      background-color: var(--tuti-naranja);
       color: white;
     }
 
@@ -63,9 +63,6 @@
   60%       { transform: translateY(-4px); }
 }
 
-.ubi-tuti-img {
-  /* Sin animación por defecto */
-}
 
 .ubi-tuti-img:hover {
   animation: bounce 0.6s ease-in-out infinite;

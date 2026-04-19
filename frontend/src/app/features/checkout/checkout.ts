@@ -5,6 +5,7 @@ import { PasoCarritoComponent } from './steps/paso-carrito/paso-carrito';
 import { PasoIdentificacionComponent } from './steps/paso-identificacion/paso-identificacion';
 import { PasoEntregaComponent } from './steps/paso-entrega/paso-entrega';
 import { PasoPagoComponent } from './steps/paso-pago/paso-pago';
+import { ToastService } from '../../core/services/toast';
 
 @Component({
   selector: 'app-checkout',
@@ -21,6 +22,7 @@ import { PasoPagoComponent } from './steps/paso-pago/paso-pago';
 export class CheckoutComponent {
   private router = inject(Router);
   protected cartService = inject(CartService);
+  private toastService = inject(ToastService)
 
   pasoActual = signal(1);
 
@@ -48,13 +50,15 @@ export class CheckoutComponent {
   }
 
   confirmarPedido(): void {
+      console.log('Payload enviado:', JSON.stringify(this.datosPedido())); // ← agrega esto
+
     this.cartService.finalizarCompra(this.datosPedido()).subscribe({
       next: (respuesta: any) => {
-        this.cartService.vaciarCarrito();
+        this.cartService.guardarYVaciar();
         this.router.navigate(['/confirmacion']);
       },
       error: (error: any) => {
-        alert('Ocurrió un error al procesar tu compra.');
+        console.error('El interceptor ya manejó este error.');
       }
     });
   }

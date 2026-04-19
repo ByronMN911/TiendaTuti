@@ -1,4 +1,3 @@
-// src/app/features/catalogo/catalogo.component.ts
 import { Component, inject, signal, computed, OnInit } from '@angular/core';
 import { ApiService } from '../../core/services/api';
 import { ProductCardComponent, Producto } from '../../shared/product-card/product-card';
@@ -15,21 +14,17 @@ import { ToastService } from '../../core/services/toast';
 })
 export class CatalogoComponent implements OnInit {
   private apiService = inject(ApiService);
-
   private route = inject(ActivatedRoute);
   private toastService = inject(ToastService);
 
-  // Signals para estado del componente
-  readonly productos  = signal<Producto[]>([]);
-  readonly cargando   = signal(true);
-  readonly categoriaFiltro = signal(''); // '' = todas
+  readonly productos       = signal<Producto[]>([]);
+  readonly cargando        = signal(true);
+  readonly categoriaFiltro = signal('');
 
-  // Computed: lista única de categorías a partir de los productos
   readonly todasLasCategorias = computed(() =>
     [...new Set(this.productos().map(p => p.categoria))].sort()
   );
 
-  // Computed: productos filtrados por categoría activa
   readonly productosFiltrados = computed(() => {
     const cat = this.categoriaFiltro();
     return cat
@@ -38,25 +33,20 @@ export class CatalogoComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    // 1. Escuchamos si la URL cambia (por ejemplo, si entra una búsqueda)
     this.route.queryParams.subscribe(params => {
-      const termino = params['search']; // Captura lo que dice ?search=...
-      
-      this.cargando.set(true); // Mostramos el spinner naranja
+      const termino    = params['search'];
+      const categoriaId = params['categoria']; // ← nombre que viene del home
+
+      this.cargando.set(true);
 
       if (termino) {
-        // 2A. SI HAY BÚSQUEDA: Limpiamos la categoría activa y llamamos al backend para buscar
-        this.categoriaFiltro.set(''); 
-        
+        // Búsqueda por texto
+        this.categoriaFiltro.set('');
         this.apiService.buscarProductos(termino).subscribe({
           next: (data) => {
-            // Filtramos la lista para que solo queden los productos cuyo nombre incluya lo que escribiste
-            const productosEncontrados = data.filter(producto => 
-              producto.nombre.toLowerCase().includes(termino.toLowerCase())
+            this.productos.set(
+              data.filter(p => p.nombre.toLowerCase().includes(termino.toLowerCase()))
             );
-            
-            // Guardamos solo los filtrados en nuestra signal
-            this.productos.set(productosEncontrados);
             this.cargando.set(false);
           },
           error: (err) => {
@@ -64,8 +54,24 @@ export class CatalogoComponent implements OnInit {
             this.cargando.set(false);
           }
         });
+
+      } else if (categoriaId) {
+        // Viene desde el home con ?categoria=NombreCategoria
+        this.apiService.getProductos().subscribe({
+          next: (data) => {
+            this.productos.set(data);
+            this.categoriaFiltro.set(categoriaId); // activa el filtro del sidebar
+            this.cargando.set(false);
+          },
+          error: (err) => {
+            console.error('Error al cargar por categoría:', err);
+            this.cargando.set(false);
+          }
+        });
+
       } else {
-        // 2B. SI NO HAY BÚSQUEDA: Traemos todo el catálogo normal
+        // Catálogo completo sin filtro
+        this.categoriaFiltro.set('');
         this.apiService.getProductos().subscribe({
           next: (data) => {
             this.productos.set(data);
